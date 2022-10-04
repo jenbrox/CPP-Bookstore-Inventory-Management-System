@@ -78,9 +78,10 @@ public:
         title = title;
     }
     void setAuthors(string authorName){
-        for (int k = 0; k <=5; k++){
+        for (int k = 0; k <=5; k++){ //this is going to put the author in each element
             if (authors[k] == "") {
                 authors[k] = authorName;
+                break; //does break bring you where?
             }
         }
     }
@@ -216,6 +217,7 @@ int main() {
         //instantiate variables to use below
         string bookTitle;
         string bookAuthor;
+        string bookAuthors[5] = {};
         int numOfAuthors;
         int bookYear;
         string bookGenre;
@@ -249,25 +251,27 @@ int main() {
             case 1: {
                 cout << "\nAdd a Book to the Inventory. What information do you have about the book?" << endl;
                 char Option1;
-                cout << "Option 'A' Title and author(s).\n"
-                        "\u0088 Option 'B' Title, author(s), and year.\n"
-                        "\u0088 Option 'C' Title, author(s), year, and genre." << endl;
+                cout << "Option 'A' Title and author(s).\n" <<
+                        "Option 'B' Title, author(s), and year.\n" <<
+                        "Option 'C' Title, author(s), year, and genre." << endl;
                 cin.get(Option1);
                 toupper(Option1); //error? idk i just want to ignore case on the char
                 //I could make this slightly shorter, but ehh (see above commenting)
                 //Has title and author(s) only
                 if (Option1 == 'A') {
+
                     cout << "Enter the Title of the Book:";
-                    cin >> bookTitle;
+                    cin.ignore();
+                    getline(cin, bookTitle);
                     cout << "\nHow many authors does the book have?";
                     cin >> numOfAuthors;
                     for (int p = 0; p < numOfAuthors; p++) {
                         cout << "\nEnter an Author of the book:";
-                        cin >> bookAuthor;
+                        getline(cin, bookTitle);
                         b.setAuthors(bookAuthor); //I think I need to ask first, then set to the object
                         }
                         //b.authors[bookAuthor];
-                        //Book q = new Book(bookTitle, authors[]; //how to create this with a string[]
+                       i.addBook(*(new Book(bookTitle, &bookAuthors[numOfAuthors]))); //how to create this with a string[]
                         //authors[bookAuthor];//add to object
                         //could I create a function in Book to add the authors for a book? and use an int as the parameter?
                     //give book to Inventory object
@@ -275,12 +279,14 @@ int main() {
                 //has title, authors, and year only
                  else if (Option1 == 'B'){
                     cout << "Enter the Title of the Book:";
-                    cin >> bookTitle;
+                    cin.ignore();
+                    getline(cin, bookTitle);
                     cout << "\nHow many authors does the book have?";
                     cin >> numOfAuthors;
                     for (int p = 0; p < numOfAuthors; p++) {
                         cout << "\nEnter an Author of the book:";
-                        cin >> bookAuthor;
+                        cin.ignore();
+                        getline(cin, bookTitle);
                         b.setAuthors(bookAuthor);
                     }
                     cout << "\nEnter the year the book was published:";
@@ -291,16 +297,21 @@ int main() {
                  //user has title, author(s), year, and genre
                 else if (Option1 == 'C') {
                     cout << "Enter the Title of the Book:";
-                    cin >> bookTitle;
+                    cin.ignore();
+                    getline(cin, bookTitle);
                     cout << "\nHow many authors does the book have?";
                     cin >> numOfAuthors;
                     for (int p = 0; p < numOfAuthors; p++) {
                         cout << "\nEnter an Author of the book:";
-                        cin >> bookAuthor;
+                        cin.ignore();
+                        getline(cin, bookAuthor);
                         b.setAuthors(bookAuthor);
                     }
                     cout << "\nEnter the year the book was published:";
                     cin >> bookYear;
+                    cout << "\nEnter the genre of the book:";
+                    cin.ignore();
+                    getline(cin, bookGenre);
                     //create the book object
                     //give book to Inventory object
                 }
@@ -358,7 +369,10 @@ int main() {
                 cout << "\nWhat is the year of the book you would like to update?";
                 cin >> bookYear;
                 int bookDataIndex = i.searchBooks(bookTitle, bookYear);
-               // cout << i.books[bookDataIndex]; //nooo create a tostring
+               cout << i.books[bookDataIndex].getID() << i.books[bookDataIndex].getTitle() << \
+               i.books[bookDataIndex].getAuthors() << i.books[bookDataIndex].getYear() \
+                    << i.books[bookDataIndex].getGenre() << i.books[bookDataIndex].getNumberAvailable() << "\n" << endl;
+                    //nooo create a tostring?
                 cin.ignore();
                 break;
             }
