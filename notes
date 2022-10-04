@@ -1,0 +1,388 @@
+ #include <iostream>
+ #include <string>
+ #include <sstream>
+ using namespace std;
+
+ /*
+  * BOOK CLASS - 50 pts
+  * INVENTORY CLASS - 100 pts
+  * MAIN - 30 pts
+  * DOCUMENTATION - 20 pts
+  */
+
+ /*
+  * ABOUT THIS PROGRAM
+  * This program manages an inventory system for a bookstore to manage book objects. The inventory of the books
+    * is in the Inventory class.
+    *
+    * For 1: Ask user what information they would like to provide (choice between three constructors). Then ask
+    * that info and add to the constructor and place in inventory. Create ID at that time combining two variables?
+    */
+
+
+   class Book {
+   public:
+       string ID;
+       string title;
+       //string author;
+       string authors[5] = {};
+       string genre;
+       double price;
+       int year;
+       int numberAvailable;
+
+      Book(){}
+       Book(string pTitle, string pAuthors[5]) {
+           title = pTitle;
+           for (int i = 0; i <= 5; i++) {
+               authors[i] = pAuthors[i];
+           }
+       }
+       Book(string pTitle, string pAuthors[5], int pYear) {
+           title = pTitle;
+           for (int i = 0; i <= 5; i++) {
+               authors[i] = pAuthors[i];
+           }
+           year = pYear;
+       }
+       Book(string pTitle, string pAuthors[5], int pYear, string pGenre) {
+           title = pTitle;
+           for (int i = 0; i <= 5; i++) {
+               authors[i] = pAuthors[i];
+           }
+           year = pYear;
+           genre = pGenre;
+       }
+
+       string getTitle() {
+           return title;
+       }
+
+       string getID() {
+           return ID;2       }
+   //    string[] getAuthors() {
+   //        return authors[];
+   //    }
+       string getGenre(){
+           return genre;
+       }
+       double getPrice() {
+           return price;
+       }
+       int getYear() {
+           return year;
+       }
+
+       int getNumberAvailable() {
+           return numberAvailable;
+       }
+
+       void setId(const string &id) {
+           ID = id;
+       }
+
+       void setGenre(const string &genre) {
+           Book::genre = genre;
+       }
+
+       void setPrice(double price) {
+           Book::price = price;
+       }
+
+       void setYear(int year) {
+           Book::year = year;
+       }
+
+       void setNumberAvailable(int numberAvailable) {
+           Book::numberAvailable = numberAvailable;
+       }
+
+      void setTitle(const string &title) {
+          Book::title = title;
+      }
+
+      const string *getAuthors() const {
+          return authors;
+      }
+
+      void setAuthors (string author){
+          string authorCounter;
+          for (int i = 0; i <= 5; i++) {
+              authors[i] = author; //
+          }
+      }
+
+      //AUTHORS[] SETTER?
+
+  };
+  //*
+  // * This class will manage multiple Book objects to simulate an inventory management system for a bookstore.
+  // */
+  class Inventory {
+  public:
+      Book books[100];//right?
+      int counter = 0;
+
+      Inventory() {
+
+      } //creates the array
+      Inventory(Book pBook) {
+          books[0] = pBook;
+          counter++;
+      } //create the array and assign first index to this book object
+
+
+      void addBook(Book book) {     //F1: adding new book objects to the array
+          books[counter] = book;
+          counter++;
+      }
+
+      void updatePrice(Book book, double price) {     //F2: updating the price of a book object in the array
+          books->setPrice(price);
+      }
+
+      void
+      updateNumAvailable(Book book, int numAvailable) {     //F3: updating the availability/stock count of Book objects
+          books->setNumberAvailable(numAvailable);
+      }
+
+      int searchBooks(string title, int year) {     //F4: searching the inventory for Book by its title and year and return its price and number available //string stream?
+
+        int index;
+        for (int i = 0; i <= counter; i++) {
+          if (books[i].getTitle() == title && books[i].getYear() == year)          {
+                i = index;
+              }
+
+          }
+
+        return index;
+
+      }
+
+
+//searching the inventory for a Book by its title and year to return its price and the number available.
+
+
+//return ss.str(); //makes the sstream a string
+//                  price = books[i].getPrice();
+                  //numAvailable = books[i].getNumberAvailable();
+
+  };
+
+/*
+1 (rainbow, Jennifer, 2022)
+2 (about CS, bobby, 2019)
+
+searchedBook = (rainbow, Jennifer, 2022)
+
+main
+int elementofsearchedBook = search(rainbow, 2022)
+cout << update price or availbility?
+UPDATE availbility
+i.books[elementofSearchedBook].setPrice()
+
+*/
+
+
+
+
+  int main() {
+
+      //instantiate new Inventory object
+     Inventory i;
+     //Book bObjectA(string, string[]);
+     Book bObjectB("Rainbow", {"Jennifer"}, 2022);
+     i.books[i.counter] = bObjectB;
+     i.counter++;
+     //Book bObjectC(string, string[], int, string);
+
+      string stringChoice;
+      int choice;
+      do {
+          //present the user with the menu of conversion options
+          cout << "______________________________________________\n";
+          printf("%-20s%-20s\n", "Action", "Option No.");
+          cout << "----------------------------------------------\n";
+          printf("%-20s%-20s\n", "Add a Book to the Inventory", "1");
+          printf("%-20s%-20s\n", "Update the price of a Book specified by a title and year", "2");
+          printf("%-20s%-20s\n", "Update the inventory count for a Book specified by title and year", "3");
+          printf("%-20s%-20s\n", "Print the Books currently in the Inventory – their title, author(s), year, genre, number available,\n"
+                                 "etc.", "4");
+          printf("%-20s%-20s\n", "Print the member data for a Book by searching for it by title and year", "5");
+          printf("%-20s%-20s\n", "Exit Program", "6");
+          cout << "----------------------------------------------\nEnter your selection here:";
+
+          //read selection from the user and use that selection to call the applicable function
+          getline(cin, stringChoice);
+          stringstream(stringChoice) >> choice;
+
+          string bookTitle;
+          string bookAuthor;
+          int numOfAuthors;
+          int bookYear;
+          string bookGenre;
+/*
+  bookTitle = rainbows
+  author = Jennifer
+
+  cout << ask for title
+  cin >> bookTitle
+  cout << ask for author
+  cin >> author
+  if(A)
+    book (booktitle, author)
+  else if (B)
+    cout << ask for year
+    cin >> year
+    book (booktitle, author, year)
+  else if (C)
+    cout << ask for year
+    cin >> year
+    cout << ask for genre
+    cin >> genre
+    book (booktitle, author, year, genre)
+
+
+    Book const1(booktitle, author);
+    Book const1(booktitle, author, year);
+    Book const1(booktitle, author, year, genre);
+
+
+  //update book object each time, option 1
+    i.books[i.counter] = new Book(booktitle, author, year);
+
+  */
+
+
+          switch(choice){
+              case 1: {
+                  cout << "\nAdd a Book to the Inventory. What information do you have about the book?" << endl;
+                  char Option1;
+                  cout << "Option 'A' Title and author(s).\n"
+                          "\u0088 Option 'B' Title, author(s), and year.\n"
+                          "\u0088 Option 'C' Title, author(s), year, and genre." << endl;
+                  cin.get(Option1);
+                  toupper(Option1); //error?
+                  if (Option1 == 'A') {
+                      cout << "Enter the Title of the Book:";
+                      cin >> bookTitle;
+                      cout << "\nEnter the Author of the book:"; //how should I do this? I'll use one author for n                      cin >> bookAuthor;
+                      cout << "\nEnter the number of authors:";
+                      for (int p = 0; p < numOfAuthors; p++){
+                          cout << "\nEnter the Author of the book:"; //how should I do this? I'll use one author for now
+                          cin >> bookAuthor;
+                          Book object = //add to object
+                          authors[bookAuthor];
+                      }
+                  } else if (Option1 == 'B') {
+                      cout << "Enter the Title of the Book:";
+                      cin >> bookTitle;
+                      cout << "\nEnter the Author of the book:"; //how should I do this? I'll use one author  now
+                      cin >> bookAuthor;
+                      cout << "\nEnter the year the book was published:";
+                      cin >> bookYear;
+                      bObjectB(bookTitle, bookAuthor, bookYear);
+                  } else if (Option1 == 'C'){
+                      cout << "Enter the Title of the Book:";
+                      cin >> bookTitle;
+                      cout << "\nEnter the Author of the book:"; //how should I do this? I'll use one author for now
+                      cin >> bookAuthor;
+                      cout << "\nEnter the year the book was published:";
+                      cin >> bookYear;
+                      cout << "\nEnter the genre:";
+                      cin >> bookGenre;
+                      bObjectC(bookTitle, bookAuthor, bookYear, bookGenre);
+                      }
+
+
+                      //for multiple authors
+  //                    cout << "\nEnter the number of authors:";
+  //                    for (int p = 0; p < numOfAuthors; p++){
+  //                        cout << "\nEnter the Author of the book:"; //how should I do this? I'll use one author for now
+  //                        cin >> bookAuthor;
+  //                        Book object = new authors[]
+  //                        author[bookAuthor];
+  //                    }
+
+
+
+
+
+                  double fahrenheit;
+                  cin >> fahrenheit;
+                 // double celsiusConversion = convertToCelsius(fahrenheit);
+                 // cout << (fahrenheit) << " degrees fahrenheit converted to celsius is " << (celsiusConversion) << ".\n" << endl;
+                  cin.ignore();
+                  break;
+              }
+              case 2: {
+                cout << "What is the title of the book you would like to update?";
+                cin >> bookTitle;
+                cout << "What is the year of the book you would like to update?";
+                cin >> bookYear;
+                // use search() function here and make it = to a variable called index
+                cout << "\nWhat would you like to update the price to?";
+                // cin price
+                // i.books[index].setPrice(price)
+
+                  cin.ignore();
+                  break;
+              }
+              case 3: {
+                  cout << "What is the title of the book you would like to update?";
+                  cin >> bookTitle;
+                  cout << "What is the year of the book you would like to update?";
+                  cin >> bookYear;
+                // index = search()
+                  cout << "\nWhat would you like to update the availability to?";
+                // cin availability
+                // i.books[index].setAvailability(availability)
+
+                  cin.ignore();
+                  break;
+              }
+              case 4: {
+              for (int j = 0; j <= i.counter; j++){
+                cout << i.books[j].getTitle() << i.books[j].getAuthors() << i.books[j].getYear() << i.books[j].getGenre() << i.books[j].getNumberAvailable() << endl;
+              }
+
+                  cin.ignore();
+                  break;
+              }
+              case 5: {
+
+                //4 but not the for loop
+                //to string
+                  cin.ignore();
+                  break;
+              }
+              case 6:
+                  cout << "Program exited successfully." << endl;
+                  break;
+              default:
+                  cout << "Invalid selection. Please input either 1, 2, 3, 4, 5, or 6.\n" << endl;
+          }
+
+      } while (choice != 6);
+
+      return 0;
+
+  }
+----
+old one
+ //search the inventory for Book by its title and year and return its price OR number available //string stream?
+ string returnAvailable(string title, int year) {
+
+     stringstream ss;
+     int price;
+     int numAvailable;
+     for (int i = 0; i <= counter; i++) {
+         if (books[i].getTitle() == title && books[i].getYear() == year)
+             price = books[i].getPrice();
+         numAvailable = books[i].getNumberAvailable();
+     }
+     ss << "The price is " << (price) << " , and number available " << (numAvailable);
+
+     return ss.str(); //makes the sstream a string
+ }
