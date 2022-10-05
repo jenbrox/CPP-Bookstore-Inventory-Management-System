@@ -9,12 +9,22 @@ using namespace std;
  * (2) Make NEW book object each time. Naming issue, so use new? but pointers? DONE
  * (3) Give book to Inventory object in all options of Switch case 1. (send book object to addBook()) DONE
  * (4) Is my getter and setter for authors[] correct? DONE
- * (5) Create a way to make a book ID from Title and Author, and put in Switch Case 1.
+ * (5)
  * (6) On the search() in Inventory I need to make a way to give back an error if the book is not found
  * hence the index = 199. Need to finish this somehow. DONE
- * (7) Create a toString for Case 5 (and 4) I THINK NEW PARAMETER WILL DO THIS
+ * (7)
  * (8) The char case issue. Not easily found online. DONE
+ * OUTSTANDING TASKS:
+ * (9) Create a way to make a book ID from Title and Author, and put in Switch Case 1.
+ * (10) Create a toString for Case 5 (and 4) I THINK NEW function WILL DO THIS
+ * (11) write new functions for case 1 options
  */
+
+/*
+ *to fix address issue; write a method to print out ANY array, in main()(?), pass array as parameter, loop
+through (this will fix method to print author arrays, instead of addresses)
+ */
+
 
 
 /*
@@ -26,7 +36,10 @@ using namespace std;
 
 /*
  * ABOUT THIS PROGRAM
- * This program manages an inventory system for a bookstore to manage book objects. The inventory of the books
+ * This program manages an inventory system for a bookstore to manage book objects.
+ *
+ *
+ * The inventory of the books
  * is in the Inventory class.
  *
  * For 1: Ask user what information they would like to provide (choice between three constructors). Then ask
@@ -113,7 +126,7 @@ public:
         for (int i = 0; i <= 5; i++) {
             authors[i] = pAuthors[i];
         }
-        cout << "pTitle" << pTitle << endl;
+        cout << "\npTitle" << pTitle << endl;
         cout << "pAuthor" << &pAuthors << endl;
         cout << "title" << title << endl;
         cout << "authors" << &authors << endl;
@@ -124,7 +137,7 @@ public:
             authors[i] = pAuthors[i];
         }
         year = pYear;
-        cout << "pTitle: " << pTitle << endl;
+        cout << "\npTitle: " << pTitle << endl;
         cout << "pAuthor: " << &pAuthors << endl;
         cout << "pYear: " << pYear << endl;
         cout << "title: " << title << endl;
@@ -138,7 +151,7 @@ public:
         }
         year = pYear;
         genre = pGenre;
-        cout << "pTitle: " << pTitle << endl;
+        cout << "\npTitle: " << pTitle << endl;
         cout << "pAuthor: " << &pAuthors << endl;
         cout << "pYear: " << pYear << endl;
         cout << "pGenre: " << pGenre << endl;
@@ -210,17 +223,16 @@ int main() {
     int choice;
     do {
         //present the user with the menu of options
-        cout << "______________________________________________\n";
-        printf("%-20s%-20s\n", "Action", "Option No.");
-        cout << "----------------------------------------------\n";
-        printf("%-20s%-20s\n", "Add a Book to the Inventory", "1");
-        printf("%-20s%-20s\n", "Update the price of a Book specified by a title and year", "2");
-        printf("%-20s%-20s\n", "Update the inventory count for a Book specified by title and year", "3");
-        printf("%-20s%-20s\n", "Print the Books currently in the Inventory – their title, author(s), year, genre, number available,\n"
-                               "etc.", "4");
-        printf("%-20s%-20s\n", "Print the member data for a Book by searching for it by title and year", "5");
-        printf("%-20s%-20s\n", "Exit Program", "6");
-        cout << "----------------------------------------------\nEnter your selection here:";
+        cout << "___________________________________________________________\n";
+        printf("%-40s%-40s\n", "Action", "Option No.");
+        cout << "-----------------------------------------------------------\n";
+        printf("%-40s%-40s\n", "Add a Book to the Inventory", "1");
+        printf("%-40s%-40s\n", "Update the price of a Book", "2");
+        printf("%-40s%-40s\n", "Update the inventory count of a Book", "3");
+        printf("%-40s%-40s\n", "Print all Books currently in Inventory", "4");
+        printf("%-40s%-40s\n", "Print the data for a Book", "5");
+        printf("%-40s%-40s\n", "Exit Program", "6");
+        cout << "----------------------------------------------------------\nEnter your selection here:";
 
         //read selection from the user and use that selection to call the applicable function
         getline(cin, stringChoice);
@@ -277,8 +289,10 @@ int main() {
                     getline(cin, bookTitle);
                     cout << "\nHow many authors does the book have?";
                     cin >> numOfAuthors;
+                    cin.ignore();
                     for (int p = 0; p < numOfAuthors; p++) {
                         cout << "\nEnter an Author of the book:";
+                        cin.ignore();
                         getline(cin, bookAuthor);
                         b.setAuthors(bookAuthor); //I think I need to ask first, then set to the object
                         }
