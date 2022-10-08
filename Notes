@@ -1,0 +1,57 @@
+/*
+ * ISSUES:
+ * (1) Am I adding the authors correctly? Switch case 1. DONE
+ * (2) Make NEW book object each time. Naming issue, so use new? but pointers? DONE
+ * (3) Give book to Inventory object in all options of Switch case 1. (send book object to addBook()) DONE
+ * (4) Is my getter and setter for authors[] correct? DONE
+ * (5) On the search() in Inventory I need to make a way to give back an error if the book is not found
+ * hence the index = 199. Need to finish this somehow. DONE
+ * (6) The char case issue. Not easily found online. DONE
+ * (7) CHANGE ALL CIN TO GETLINE DONE
+ * (8) Change price from int to double DONE
+ * (9) Create a way to make a book ID from Title and Author, and put in Switch Case 1. DONE
+ * (10) Counter for ID not working correctly DONE
+ * (11) why does my addBook functions still think I'm passing in a pointer? DONE
+ * (12) Create Price, num available, year, and genre in Book() constructors DONE
+ * (13) Test if user does not input a b or b DONE
+ * (14) Test if book user inputs is not found on case 2, 3, and 5 DONE
+ * (15) write new functions for case 1 options DONE
+ * (16) BE ABLE TO UPDATE PRICE AND STOCK DONE
+ * (17) There is no reason Case 4 prints out on one line and Case 5 does not.
+ * (18) Finish documentation
+ * OUTSTANDING TASKS:
+ * (19) figure out weird line breaks
+ * (20) Make all documentation match aesthetically
+ */
+
+
+SHOULD HAVE DONE:
+(1) In searchBooks() function of Inventory Class, returned index should have been a negative number to make the error more adaptable in case the books array range is ever increased.
+(2) For searchBooks() function, transformed the given title that was passed as a parameter and then also transform the title at each index,
+then searched for a match of it in order to allow the user to make case-sensitive or spacing errors.
+(3) For Cases 2, 3, and 5, if the searchBooks() function does not find the book, the user will get an error message of "That book was not found or the year is not found in the inventory."
+searchBooks() should be updated to be able to let the user know exactly what error occurred, since not all books require a year to be added.
+(4)
+
+OF NOTE:
+(1) getline was used throughout and then any non-string types were converted using stringstream in order to avoid errors, as requested by professor.
+(2) ID was basically superfluous as I used the exact title and year in the searchBooks() function.
+(3) Many getters and setters were not used, but left so that future changes, if needed, could be made more flexibility.
+(4) So I fixed the weird line break I got when choosing Case 5 (all else printed beautifully at this time) by adding a new line between each bit of info, however when I did that
+    I get a weird line break when asking for year in B and C, then also a weird line break on the menu returned when choosing A. Same for Case 2 and 3. I took back the fix and opted
+    for the less-aesthetic and in form with what I was doing by adding line breaks (1) before asking for the publisher on Options B and C, and (2) before asking for the update value in Cases 2 and 3.
+
+        void printBook() {
+            cout << "ID: " << ID << ", Title: " << title << ", Author(s): ";
+            for (int i = 0; i < numAuthors; i++){
+                cout << "#" << i+1 << ": " << authors[i] << " ";
+            }
+            cout << ", Year: " << year << ", Genre: " << genre << ", Price: " << price << ", Number Available: " << numberAvailable << endl;
+
+
+
+NEED TO UNDERSTAND:
+(1)    string* getAuthors() { //pointer to string variable, understand why
+        return authors;
+    }
+(2)     }
