@@ -31,7 +31,19 @@ SHOULD HAVE DONE:
 then searched for a match of it in order to allow the user to make case-sensitive or spacing errors.
 (3) For Cases 2, 3, and 5, if the searchBooks() function does not find the book, the user will get an error message of "That book was not found or the year is not found in the inventory."
 searchBooks() should be updated to be able to let the user know exactly what error occurred, since not all books require a year to be added.
-(4)
+(4) Made the menu a little nicer and more matching for the user, especially for Case 1.
+(5) Made default year '0000' instead of '-1' as default.
+(6) Given the user a statement that their option worked successfully. Like:
+______________________________________________________
+To add a book, please enter the following information:
+------------------------------------------------------
+Title: 1984
+Author(s): George Orwell
+Publication Year: 1949
+Genre: Dystopian
+------------------------------------------------------
+1984 was successfully added to the inventory.
+
 
 OF NOTE:
 (1) getline was used throughout and then any non-string types were converted using stringstream in order to avoid errors, as requested by professor.
@@ -46,8 +58,9 @@ OF NOTE:
             for (int i = 0; i < numAuthors; i++){
                 cout << "#" << i+1 << ": " << authors[i] << " ";
             }
-            cout << ", Year: " << year << ", Genre: " << genre << ", Price: " << price << ", Number Available: " << numberAvailable << endl;
-
+            cout << ", Year: " << year << ", Genre: " << genre << ", Price: " << price << ", Number Available: " << numberAvailable << endl;   
+         
+(5) The assignment called for us to search by title and year. This was not the best choice since not all books require a year input, but it was the instructions given.
 
 
 NEED TO UNDERSTAND:
