@@ -17,8 +17,8 @@
  * (14) Test if book user inputs is not found on case 2, 3, and 5 DONE
  * (15) write new functions for case 1 options DONE
  * (16) BE ABLE TO UPDATE PRICE AND STOCK DONE
- * (17) There is no reason Case 4 prints out on one line and Case 5 does not.
- * (18) Finish documentation
+ * (17) There is no reason Case 4 prints out on one line and Case 5 does not. DONE
+ * (18) Finish documentation DONE
  * OUTSTANDING TASKS:
  * (19) figure out weird line breaks
  * (20) Make all documentation match aesthetically
@@ -61,10 +61,3 @@ OF NOTE:
             cout << ", Year: " << year << ", Genre: " << genre << ", Price: " << price << ", Number Available: " << numberAvailable << endl;   
          
 (5) The assignment called for us to search by title and year. This was not the best choice since not all books require a year input, but it was the instructions given.
-
-
-NEED TO UNDERSTAND:
-(1)    string* getAuthors() { //pointer to string variable, understand why
-        return authors;
-    }
-(2)     }
